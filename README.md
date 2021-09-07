@@ -62,7 +62,7 @@ lv_img_set_src(left_top_img, "S:/01.jpg");
 lv_obj_align_to(left_top_img, lv_scr_act(), LV_ALIGN_TOP_LEFT, 0, 0);
 
 lv_obj_t* left_bot_img = lv_img_create(lv_scr_act());
-lv_img_set_src(left_bot_img, "S:/01.bgm");
+lv_img_set_src(left_bot_img, "S:/01.bmp");
 lv_obj_align_to(left_bot_img, lv_scr_act(), LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
 lv_obj_t* right_top_img = lv_img_create(lv_scr_act());
