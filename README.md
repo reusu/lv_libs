@@ -74,5 +74,6 @@ lv_obj_align_to(right_bot_img, lv_scr_act(), LV_ALIGN_BOTTOM_RIGHT, 0, 0);
   
 ```
 
-![QQ图片20210907221627](https://user-images.githubusercontent.com/8424240/132360309-907e80dd-abec-4aa5-9c37-61ef7c34bd32.jpg)
+![20210907222036](https://user-images.githubusercontent.com/8424240/132361111-22ef9ad9-69d9-4c55-ad9a-6cadb90c7453.jpg)
+
 
