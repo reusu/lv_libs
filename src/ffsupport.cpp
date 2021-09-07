@@ -2,14 +2,20 @@
 
 lv_fs_file_t* ffsupport_fopen(const char* src, const char* mode) {
     lv_fs_file_t* f = (lv_fs_file_t*) lv_mem_alloc(sizeof(lv_fs_file_t));
+	lv_fs_res_t res = LV_FS_RES_UNKNOWN;
     if (strcmp(mode, "w") == 0) {
-        lv_fs_open(f, src, LV_FS_MODE_WR);
+        res = lv_fs_open(f, src, LV_FS_MODE_WR);
     } else if (strcmp(mode, "r+") == 0) {
-        lv_fs_open(f, src, (LV_FS_MODE_WR | LV_FS_MODE_RD));
+        res = lv_fs_open(f, src, (LV_FS_MODE_WR | LV_FS_MODE_RD));
     } else {
-        lv_fs_open(f, src, LV_FS_MODE_RD);
+        res = lv_fs_open(f, src, LV_FS_MODE_RD);
     }
-    return f;
+	if (res == LV_FS_RES_OK) {
+		return f;
+	} else {
+		lv_mem_free(f);
+		return NULL;
+	}
 }
 void ffsupport_fclose(lv_fs_file_t* lv_file) {
     lv_fs_close(lv_file);
