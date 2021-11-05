@@ -112,13 +112,13 @@ void lv_fs_init() {
  **********************/
 
 static void* spiffs_open(lv_fs_drv_t* drv, const char* path, lv_fs_mode_t mode) {
-  char* flag = "r";
+  char* flag = (char*)"r";
   if (mode == LV_FS_MODE_WR) {
-    flag = "w";
+    flag = (char*)"w";
   } else if (mode == LV_FS_MODE_RD) {
-    flag = "r";
+    flag = (char*)"r";
   } else if (mode == (LV_FS_MODE_WR | LV_FS_MODE_RD)) {
-    flag = "r+";
+    flag = (char*)"r+";
   }
   File file = SPIFFS.open(path, flag);
 //  Serial.printf("lvfs spiffs_open: %s (%s) \n", path, flag);
@@ -131,13 +131,13 @@ static void* spiffs_open(lv_fs_drv_t* drv, const char* path, lv_fs_mode_t mode) 
 }
 
 static void* ffat_open(lv_fs_drv_t* drv, const char* path, lv_fs_mode_t mode) {
-  char* flag = "r";
+  char* flag = (char*)"r";
   if (mode == LV_FS_MODE_WR) {
-    flag = "w";
+    flag = (char*)"w";
   } else if (mode == LV_FS_MODE_RD) {
-    flag = "r";
+    flag = (char*)"r";
   } else if (mode == (LV_FS_MODE_WR | LV_FS_MODE_RD)) {
-    flag = "r+";
+    flag = (char*)"r+";
   }
   File file = FFat.open(path, flag);
 //  Serial.printf("lvfs ffat_open: %s (%s) \n", path, flag);
@@ -150,13 +150,13 @@ static void* ffat_open(lv_fs_drv_t* drv, const char* path, lv_fs_mode_t mode) {
 }
 
 static void* sd_open(lv_fs_drv_t* drv, const char* path, lv_fs_mode_t mode) {
-  char* flag = "r";
+  char* flag = (char*)"r";
   if (mode == LV_FS_MODE_WR) {
-    flag = "w";
+    flag = (char*)"w";
   } else if (mode == LV_FS_MODE_RD) {
-    flag = "r";
+    flag = (char*)"r";
   } else if (mode == (LV_FS_MODE_WR | LV_FS_MODE_RD)) {
-    flag = "r+";
+    flag = (char*)"r+";
   }
   File file = SD.open(path, flag);
 //  Serial.printf("lvfs sd_open: %s (%s) \n", path, flag);
@@ -171,7 +171,7 @@ static void* sd_open(lv_fs_drv_t* drv, const char* path, lv_fs_mode_t mode) {
 static lv_fs_res_t fs_close(lv_fs_drv_t* drv, void* file_p) {
 //  Serial.printf("lvfs fs_close file: %s \n", ((File*) file_p) -> name());
   ((File*) file_p) -> close();
-  delete(file_p);
+  delete((File*)file_p);
   return LV_FS_RES_OK;
 }
 
@@ -220,7 +220,7 @@ static lv_fs_res_t fs_tell(lv_fs_drv_t* drv, void* file_p, uint32_t* pos_p) {
 }
 
 static void* fs_dir_open(lv_fs_drv_t* drv, const char* path) {
-  char* flag = "r";
+  char* flag = (char*)"r";
   File file = SPIFFS.open(path, flag);
   if (file) {
     if (file.isDirectory()) {
@@ -249,6 +249,6 @@ static lv_fs_res_t fs_dir_read(lv_fs_drv_t* drv, void* dir_p, char* fn) {
 
 static lv_fs_res_t fs_dir_close(lv_fs_drv_t* drv, void* dir_p) {
   ((File*) dir_p) -> close();
-  delete(dir_p);
+  delete((File*)dir_p);
   return LV_FS_RES_OK;
 }
